@@ -85,7 +85,7 @@ module.exports = function(app) {
                 // email doesn't exist we are good
                 createUser(formData, (err, data) => {
                     if (err) return res.status(400).json({error: err, msg:"Failed to create user."});
-                    else return createSession(formData.email, req, res, {playerTag: formData.playerTag, isAdmin: data.admin});
+                    else return createSession(formData.email, req, res, {email: formData.email});
                 });
             } 
             else {
