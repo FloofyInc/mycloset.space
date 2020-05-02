@@ -40,7 +40,7 @@ function killSession(req, res) {
 function login(err, data, password, req, res) {
     if (!err && data) {
         var user = {
-            playerTag: data.playerTag ,
+            email: data.email ,
             isAdmin: data.admin
         };
         if (verifyPass(data, password)) return createSession(data.email, req, res, user);
