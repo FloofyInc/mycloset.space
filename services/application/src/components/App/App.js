@@ -4,7 +4,7 @@ import './App.css';
 import { Link, Route, Switch, BrowserRouter } from 'react-router-dom';
 import { Box, Heading, Grommet } from 'grommet';
 
-import {Home, Login, Logout, Register, Loading} from 'Pages';
+import {Home, Login, Logout, Register, Loading, History} from 'Pages';
 
 class App extends Component {
     constructor(props) {
@@ -87,7 +87,6 @@ class App extends Component {
 
         var content = this.state.loading ? <Loading /> :
             <Home data={propsData}/>
-        console.log("herer 1", content, this.state.loading );
         return (
             
             
@@ -104,7 +103,11 @@ class App extends Component {
                         <Logout data={propsData}/>
                     }/>
                     <Route exact path="/register" component={() =>
-                        <Registration data={propsData}/>
+                        <Register data={propsData}/>
+                    }/>
+                    }/>
+                    <Route exact path="/history" component={() =>
+                        <History data={propsData}/>
                     }/>
                     
                 </Switch>
