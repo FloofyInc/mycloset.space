@@ -18,7 +18,6 @@ class App extends Component {
 
         this.logout = this.logout.bind(this);
         this.setEmail = this.setEmail.bind(this);
-        this.setAdmin = this.setAdmin.bind(this);
     }
 
     login() {
