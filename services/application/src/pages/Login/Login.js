@@ -157,8 +157,8 @@ class Login extends Component {
                             </Layer>
                         )}
                         <Box direction="row" gap="medium" margin='large'>
-                            <Button type="submit" primary label="Login" />
-                            <Button type="reset" label="Reset" />
+                            <Button type="submit" primary label="Login" color="#00de90"/>
+                            <Button type="reset" label="Reset" color="#00de90"/>
                         </Box>
                     </Form>
 

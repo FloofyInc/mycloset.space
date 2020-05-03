@@ -78,7 +78,7 @@ class Home extends Component {
                                         label="Register"
                                         onClick={()=>{}}
                                         fill
-                                        color="status-warning"
+                                        color="accent-1"
                                     />
                                 </Link>
                             </Box>
@@ -91,7 +91,7 @@ class Home extends Component {
                                         label="Login"
                                         onClick={()=>{}}
                                         fill
-                                        color="status-ok"
+                                        color="#00de90"
                                     />
                                 </Link>
                             </Box>

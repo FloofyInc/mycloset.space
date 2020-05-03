@@ -275,8 +275,8 @@ class Register extends Component {
                             </Layer>
                         )}
                         <Box direction="row" gap="medium" margin='large'>
-                            <Button type="submit" primary label="Register" />
-                            <Button type="reset" label="Reset" />
+                            <Button type="submit" primary label="Register" color="#00de90"/>
+                            <Button type="reset" label="Reset" color="#00de90"/>
                         </Box>
                     </Form>
 
