@@ -13,12 +13,15 @@ class App extends Component {
             msg:'',
             loading:true,
             isLoggedIn:false,
-            email:''
+            email:'',
+            firstname: '',
+            lastname:''
         };
 
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
         this.setEmail = this.setEmail.bind(this);
+        this.setName = this.setName.bind(this);
     }
 
     login() {
@@ -34,6 +37,10 @@ class App extends Component {
         this.setState({email: tag});
     }
 
+    setName(data) {
+        this.setState({firstname: data.firstname, lastname: data.lastname});
+    }
+
     componentDidMount() {
         console.log("component did mount");
         fetch('/api/checkToken', {
@@ -45,11 +52,6 @@ class App extends Component {
         .then(res => {
             console.log(res.status);
             if (res.status === 200) {
-                this.setState({
-                    msg: "USER LOGGED IN!",
-                    isLoggedIn:true,
-                    loading:false
-                });
                 return res.json();
             } else {
                 this.setState({
@@ -64,7 +66,9 @@ class App extends Component {
                 //console.log(data);
                 this.setState({
                     email: data.email,
-                    isAdmin: data.isAdmin
+                    msg: "USER LOGGED IN!",
+                    isLoggedIn:true,
+                    loading:false
                 });
             }
             
@@ -82,46 +86,15 @@ class App extends Component {
             logout:this.logout,
             setEmail: this.setEmail,
             email:this.state.email,
+            isLoggedIn: this.state.isLoggedIn,
+            setName:this.setName
         };
 
         var content = this.state.loading ? <Loading /> :
             <Home data={propsData}/>
 
         return (
-            
-            
           <BrowserRouter history={BrowserHistory}>
-                <Header background="dark-1" pad="medium">
-                    <Box direction="row" align="center" gap="small">
-                        <Avatar src='https://i.imgur.com/MdDx7M4.png' />
-                        <Anchor color="white" href="/">
-                        Cheena D'souza
-                        </Anchor>
-                    </Box>
-                    <Nav direction="row">
-                        <Link to="/" style={{ textDecoration: 'none' }}>
-                            <Text color="accent-1" weight="bold">Home</Text>
-                        </Link>
-                        {!this.state.isLoggedIn ?
-                            <Link to="/register" style={{ textDecoration: 'none' }}>
-                                <Text color="accent-1" weight="bold">Register</Text>
-                            </Link>
-                        :
-                            <span></span>
-                        }
-                        {!this.state.isLoggedIn ?
-                            
-                            <Link to="/login" style={{ textDecoration: 'none' }}>
-                                <Text color="accent-1" weight="bold">Login</Text>
-                            </Link>
-                        :
-                            
-                            <Link to="/logout" style={{ textDecoration: 'none' }}>
-                                <Text color="accent-1" weight="bold">Logout</Text>
-                            </Link>
-                        }
-                    </Nav>
-                </Header>
                 <Switch>
                     <Route exact path="/" component={() => 
                         content
