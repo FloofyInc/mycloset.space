@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { Link, Route, Switch, BrowserRouter } from 'react-router-dom';
-import { Box, Heading, Grommet } from 'grommet';
+import { Link, Route, Switch, BrowserRouter, BrowserHistory } from 'react-router-dom';
+import { Box, Heading, Grommet, Anchor, Header, Nav, Avatar, Text } from 'grommet';
 
 import {Home, Login, Logout, Register, Loading, History} from 'Pages';
 
@@ -16,6 +16,7 @@ class App extends Component {
             email:''
         };
 
+        this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
         this.setEmail = this.setEmail.bind(this);
     }
@@ -26,6 +27,7 @@ class App extends Component {
 
     logout() {
         this.setState({isLoggedIn: false});
+        //this.history.push('/');
     }
 
     setEmail(tag) {
@@ -74,23 +76,52 @@ class App extends Component {
         
     }
 
-
     render() {
         var propsData = {
             login: this.login,
             logout:this.logout,
             setEmail: this.setEmail,
             email:this.state.email,
-            isLoggedIn:this.state.isLoggedIn
         };
 
         var content = this.state.loading ? <Loading /> :
             <Home data={propsData}/>
+
         return (
             
             
-          <BrowserRouter>
-                <div>NAVIGATION</div>
+          <BrowserRouter history={BrowserHistory}>
+                <Header background="dark-1" pad="medium">
+                    <Box direction="row" align="center" gap="small">
+                        <Avatar src='https://i.imgur.com/MdDx7M4.png' />
+                        <Anchor color="white" href="/">
+                        Cheena D'souza
+                        </Anchor>
+                    </Box>
+                    <Nav direction="row">
+                        <Link to="/" style={{ textDecoration: 'none' }}>
+                            <Text color="accent-1" weight="bold">Home</Text>
+                        </Link>
+                        {!this.state.isLoggedIn ?
+                            <Link to="/register" style={{ textDecoration: 'none' }}>
+                                <Text color="accent-1" weight="bold">Register</Text>
+                            </Link>
+                        :
+                            <span></span>
+                        }
+                        {!this.state.isLoggedIn ?
+                            
+                            <Link to="/login" style={{ textDecoration: 'none' }}>
+                                <Text color="accent-1" weight="bold">Login</Text>
+                            </Link>
+                        :
+                            
+                            <Link to="/logout" style={{ textDecoration: 'none' }}>
+                                <Text color="accent-1" weight="bold">Logout</Text>
+                            </Link>
+                        }
+                    </Nav>
+                </Header>
                 <Switch>
                     <Route exact path="/" component={() => 
                         content

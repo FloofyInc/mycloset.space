@@ -51,6 +51,7 @@ module.exports = {
         alias: {
             Components: path.resolve(__dirname, 'application/src/components/'),
             Pages: path.resolve(__dirname, 'application/src/pages/'),
+            Media: path.resolve(__dirname, 'application/src/media/'),
         }
     },
     

@@ -39,7 +39,7 @@ class Logout extends Component {
                 this.setState({
                     isLoggedIn:false
                 });
-                this.props.logout();
+                this.props.data.logout();
             } else {
                 this.setState({
                     isLoggedIn:true

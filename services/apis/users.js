@@ -71,7 +71,12 @@ function findByEmail(email, callback) {
     // findOne is a function that comes with mongoDB to find exactly one row
     // that matches the given data (email)
     Users.findOne({email: email}, callback);
-    // 
+}
+
+function findByUsername(username, callback) {
+    // findOne is a function that comes with mongoDB to find exactly one row
+    // that matches the given data (username)
+    Users.findOne({username: username}, callback);
 }
 
 function getAll(callback) {
@@ -87,7 +92,11 @@ function createUser(data, callback) {
     var user = {
         email: data.email,
         password: pass,
-        admin:false
+        username: data.username,
+        firstname: data.firstname,
+        lastname: data.lastname,
+        location: data.location,
+        dob:data.dob
     };
     // use the schema to create that object in the database
     Users.create(user, callback);
@@ -125,11 +134,18 @@ module.exports = function(app) {
     app.post('/api/signin', (req, res) => {
         // grabs the first and second parameter of req.body which is given by http
         // email, password are just variable names for those parameters 
-        const {email, password} = req.body;
-
-        findByEmail(email, (err, data) => {
-            return login(err, data, password, req, res);
-        });
+        const formData = req.body;
+        if (formData.email) {
+            findByEmail(formData.email, (err, data) => {
+                return login(err, data, formData.password, req, res);
+            });
+        }
+        else if (formData.username) {
+            findByUsername(formData.username, (err, data) => {
+                return login(err, data, formData.password, req, res);
+            });
+        }
+        
     });
 
     app.get('/api/checkToken', withAuth, function(req, res) {

@@ -20,9 +20,28 @@ var userSchema = new Schema({
         type: String,
         required: true
     },
+    username: {
+        type: String,
+        required: true
+    },
     verified: {
         type: Boolean,
         default: false
+    },
+    firstname : {
+        type: String,
+        required: true 
+    },
+    lastname : {
+        type: String,
+        required: true 
+    },
+    location : {
+        type: String,
+        required: true 
+    },
+    dob: {
+        type: Date
     }
 },
 { timestamps: true });
