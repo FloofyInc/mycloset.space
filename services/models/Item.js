@@ -22,6 +22,8 @@ var itemSchema = new Schema({
 
     category: { type: String, required: true },
 
+    colour: {type: String},
+
     tags: [
         String
     ],

@@ -48,6 +48,7 @@ module.exports = function(app) {
             picture: formData.picture,
             name: formData.name,
             category: formData.category,
+            colour: formData.colour,
             tags: formData.tags,
             value: formData.value
         }
@@ -85,6 +86,7 @@ module.exports = function(app) {
             picture: formData.picture,
             name: formData.name,
             category: formData.category,
+            colour: colour,
             tags: formData.tags,
             value: formData.value
         }
