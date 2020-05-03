@@ -118,6 +118,8 @@ module.exports = function(app) {
         });
     });
 
+    // signout / signinn don't require withAuth b/c the user doesn't need to be signed in to perform these actions
+    // every other action while logged in must use middleware withAuth
     app.post('/api/signout', (req, res) => {
         return killSession(req, res);
     });

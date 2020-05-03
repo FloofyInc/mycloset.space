@@ -12,17 +12,18 @@ const Schema = mongoose.Schema;
  * Item Schema
  */
 var itemSchema = new Schema({
+    // mongoDB generates a hidden unique ID for every item in the database
 
-    picture: { data: Buffer, contentType: String, required: true },
+    owner: { type: String, required: true},
+
+    picture: { data: Buffer, contentType: String},
 
     name: { type: String, required: true },
 
     category: { type: String, required: true },
 
     tags: [
-        new Schema({
-            tag: String
-        })
+        String
     ],
 
     value: {type: Number}
