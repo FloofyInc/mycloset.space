@@ -3,7 +3,7 @@ require('dotenv').config();
 // server
 const path = require('path');
 var express = require('express');
-var app = express();
+var app = express(); // express is the server
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
@@ -50,6 +50,7 @@ var port = 8080;
 
 // APIs go here
 const user = require('./apis/users.js')(app);
+const items = require('./apis/items.js')(app);
 const withAuth = require('./apis/middleware');
 
 // Common Routes
