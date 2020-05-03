@@ -46,16 +46,22 @@ class Closet extends Component {
             <Grommet theme={grommet}>
                 <Box
                     direction="column"
-                    pad="small"
+                    pad="none"
                     width="100vw"
                     height="100vh"
                     round="xxsmall"
                 >
                     <Box pad="none" direction="row"  width="100%" height="100%"> 
                         {this.state.open && (
-                            <Box width="150px" height="100%" background={{color:"accent-1"}}>
-                                hello
-                            </Box>
+                            <Layer
+                            onEsc={() => this.setOpen(false)}
+                            onClickOutside={() => this.setOpen(false)}
+                            >
+                                <Box width="150px" height="100%" background={{color:"accent-1"}}>
+                                    hello
+                                </Box>
+                            </Layer>
+                            
                         )}
                         <Box align="center" direction="row" width="50px" height="50px">
                             
@@ -68,16 +74,6 @@ class Closet extends Component {
                             />
                             
                         </Box>
-                        
-                    </Box>
-                    <Box 
-                        direction="column" 
-                        justify="evenly" 
-                        align="center"
-                        pad="large"  
-                        width="100%" 
-                        gap="large"
-                    > 
                         
                     </Box>
                 </Box>
